@@ -1,13 +1,13 @@
 <?php
-// Database connection
 $host = 'localhost';
+$db = 'NEW FOLDER';
 $user = 'root';
-$password = '';
-$db = 'academic_gateway';
+$pass = '';
 
-$connection = mysqli_connect($host, $user, $password, $db);
-
-if (!$connection) {
-    die('Connection failed: ' . mysqli_connect_error());
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
 }
 ?>
